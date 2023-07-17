@@ -23,11 +23,18 @@ class _PlanningState extends State<Planning> {
   ];
 
   final List<String> industryGroups = [
-    'Group 1',
-    'Group 2',
-    'Group 3',
-    'Group 4',
-    'Group 5'
+    'Transportation',
+    'Chemical',
+    'Electronics',
+    'Energy',
+    'Metal & Mining',
+    'Advanced Manufacturing',
+    'Pharmaceuticals & HealthCare',
+    'Paper',
+    'Utilities',
+    'Textile, Leather, Apparels',
+    'Fast Moving Consumer Goods',
+    'General Manufacturing'
   ];
 
   @override
