@@ -50,8 +50,6 @@ class _PlanningState extends State<Planning> {
               color: Colors.black,
             ),
             onPressed: () {
-              // Action à effectuer lorsqu'on appuie sur le bouton arrow back
-              // Par exemple, pour retourner à l'écran précédent :
               Navigator.pop(context);
             },
           ),
