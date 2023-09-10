@@ -49,7 +49,7 @@ class Quest2dim2 extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => Quest3dim2()),
           );

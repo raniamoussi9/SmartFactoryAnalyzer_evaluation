@@ -50,7 +50,7 @@ class Question1Dim1 extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => Quest2dim1()),
           );

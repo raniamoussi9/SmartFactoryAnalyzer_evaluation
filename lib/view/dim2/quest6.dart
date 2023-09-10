@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:smart_factory_analyzer/view/dim3/quest1.dart';
+import 'package:smart_factory_analyzer/view/dim3/band3.dart';
 
-import '../welcome_page.dart';
+import 'package:smart_factory_analyzer/view/remarks.dart';
+
+
 
 class Quest6dim2 extends StatelessWidget {
   const Quest6dim2({super.key});
@@ -49,9 +51,9 @@ class Quest6dim2 extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => Quest1dim3()),
+            MaterialPageRoute(builder: (context) => Remarks(path: Band3())),
           );
         },
         child: Icon(Icons.arrow_forward),

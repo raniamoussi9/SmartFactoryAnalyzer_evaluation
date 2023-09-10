@@ -1,8 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:smart_factory_analyzer/view/dim16/quest1.dart';
-import 'package:smart_factory_analyzer/view/dim2/quest6.dart';
+// ignore_for_file: prefer_const_constructors
 
-import '../welcome_page.dart';
+import 'package:flutter/material.dart';
+import 'package:smart_factory_analyzer/view/dim16/band16.dart';
+import 'package:smart_factory_analyzer/view/dim16/quest1.dart';
+import 'package:smart_factory_analyzer/view/remarks.dart';
+
+
 
 class Quest5dim15 extends StatelessWidget {
   const Quest5dim15({super.key});
@@ -52,7 +55,7 @@ class Quest5dim15 extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Quest1dim16()),
+            MaterialPageRoute(builder: (context) => Remarks(path: Band16())),
           );
         },
         child: Icon(Icons.arrow_forward),

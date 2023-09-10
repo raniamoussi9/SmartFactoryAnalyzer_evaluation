@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
-import 'package:smart_factory_analyzer/utils/const.dart';
+import 'package:smart_factory_analyzer/core/app_route.dart';
+import 'package:smart_factory_analyzer/core/const.dart';
 import 'login_page.dart';
 
 Color myColor = Color.fromARGB(255, 36, 36, 93);
@@ -17,7 +18,7 @@ class WelcomePage extends StatelessWidget {
         children: [
           Container(
             height: MediaQuery.of(context).size.height * 0.45,
-            width: ConstVariable.getWidth(context)*1,
+            width: ConstVariable.getWidth(context) * 1,
             decoration: BoxDecoration(
               color: myColor,
               borderRadius: BorderRadius.only(
@@ -92,12 +93,7 @@ class WelcomePage extends StatelessWidget {
                     fontSize: MediaQuery.of(context).size.height * 0.017),
               ),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => LoginPage(),
-                  ),
-                );
+                Navigator.pushReplacementNamed(context, AppRoute.logInScreen);
               },
             ),
           ),

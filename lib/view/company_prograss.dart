@@ -1,32 +1,40 @@
-import 'dart:math';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:smart_factory_analyzer/controller/login.dart';
-import 'package:smart_factory_analyzer/view/company_details.dart';
+import 'package:smart_factory_analyzer/core/app_const.dart';
+import 'package:smart_factory_analyzer/core/app_route.dart';
 import 'package:smart_factory_analyzer/view/dashboard.dart';
-import 'package:smart_factory_analyzer/view/login_page.dart';
+import 'package:smart_factory_analyzer/view/dim10/band10.dart';
+import 'package:smart_factory_analyzer/view/dim11/band11.dart';
+import 'package:smart_factory_analyzer/view/dim14/band14.dart';
+import 'package:smart_factory_analyzer/view/dim15/band15.dart';
+import 'package:smart_factory_analyzer/view/dim16/band16.dart';
+import 'package:smart_factory_analyzer/view/dim2/band2.dart';
+import 'package:smart_factory_analyzer/view/dim3/band3.dart';
+import 'package:smart_factory_analyzer/view/dim4/band4.dart';
+import 'package:smart_factory_analyzer/view/dim5/band5.dart';
+import 'package:smart_factory_analyzer/view/dim6/band6.dart';
+import 'package:smart_factory_analyzer/view/dim7/band7.dart';
+import 'package:smart_factory_analyzer/view/dim9/band9.dart';
 
 import '../model/Indus.dart';
+import 'dim1/band1.dart';
+import 'dim12/band12.dart';
+import 'dim13/band13.dart';
+import 'dim8/band8.dart';
 
 class CompanyPrograss extends StatefulWidget {
-  const CompanyPrograss({super.key,required this.progress,required this.name});
+  const CompanyPrograss(
+      {super.key, required this.progress, required this.name});
   final double progress;
   final String name;
-
-  
 
   @override
   State<StatefulWidget> createState() => CompanyPrograssState();
 }
 
 var b = const Color.fromRGBO(255, 255, 255, 1);
-Color myColor = Color.fromARGB(255, 36, 36, 93);
+Color myColor = AppConst.backgroundBlueColor;
 
 class CompanyPrograssState extends State<CompanyPrograss> {
-  
-
   final controller = TextEditingController();
   List<Indus> induss = allIndus;
   @override
@@ -34,7 +42,6 @@ class CompanyPrograssState extends State<CompanyPrograss> {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.height;
     return Scaffold(
-        
         body: SafeArea(
       child: Container(
         height: screenHeight,
@@ -46,20 +53,187 @@ class CompanyPrograssState extends State<CompanyPrograss> {
               const SizedBox(
                 height: 10,
               ),
-              bloc2(),
+              //bloc2(),
               const SizedBox(
                 height: 10,
               ),
-              bloc3(screenHeight: screenHeight, screenWidth: screenWidth,text: "operaion-vertical",value: Random().nextDouble()),
-              bloc3(screenHeight: screenHeight, screenWidth: screenWidth,text: "supply chain", value: Random().nextDouble()),
-              bloc3(screenHeight: screenHeight, screenWidth: screenWidth,text: "product lifecycle",value: Random().nextDouble()),
-              bloc3(screenHeight: screenHeight, screenWidth: screenWidth,text: "Automation",value: Random().nextDouble()),
-              bloc3(screenHeight: screenHeight, screenWidth: screenWidth,text: "connectivity",value: Random().nextDouble()),
-              bloc3(screenHeight: screenHeight, screenWidth: screenWidth,text: "intelligence", value: Random().nextDouble()),
-              bloc3(screenHeight: screenHeight, screenWidth: screenWidth,text: "talent readinnes leadership",value: Random().nextDouble()),
-              bloc3(screenHeight: screenHeight, screenWidth: screenWidth,text: "structure & management",value:Random().nextDouble()),
-              bloc3(screenHeight: screenHeight, screenWidth: screenWidth,text: "stategy and governance",value: Random().nextDouble()),
-              
+              bloc3(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) {
+                      return Band1();
+                    }));
+                  },
+                  screenHeight: screenHeight,
+                  screenWidth: screenWidth,
+                  text: "Operations - Vertical Integration",
+                  value: 0),
+              bloc3(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) {
+                      return Band2();
+                    }));
+                  },
+                  screenHeight: screenHeight,
+                  screenWidth: screenWidth,
+                  text: "Supply chain - Horizontal",
+                  value: 0),
+              bloc3(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) {
+                      return Band3();
+                    }));
+                  },
+                  screenHeight: screenHeight,
+                  screenWidth: screenWidth,
+                  text: "Product Lifecycle-\nIntegrated Product Lifecycle",
+                  value: 0),
+              bloc3(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) {
+                      return Band4();
+                    }));
+                  },
+                  screenHeight: screenHeight,
+                  screenWidth: screenWidth,
+                  text: "Automation - Shop floor Automation",
+                  value: 0),
+              bloc3(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) {
+                      return Band5();
+                    }));
+                  },
+                  screenHeight: screenHeight,
+                  screenWidth: screenWidth,
+                  text: "Automation - Entreprise Automation",
+                  value: 0),
+              bloc3(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) {
+                      return Band6();
+                    }));
+                  },
+                  screenHeight: screenHeight,
+                  screenWidth: screenWidth,
+                  text: "Automation - Facility",
+                  value: 0),
+              bloc3(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) {
+                      return Band7();
+                    }));
+                  },
+                  screenHeight: screenHeight,
+                  screenWidth: screenWidth,
+                  text: "Connectivity - Shop floor\nConnectivity",
+                  value: 0),
+              bloc3(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) {
+                      return Band8();
+                    }));
+                  },
+                  screenHeight: screenHeight,
+                  screenWidth: screenWidth,
+                  text: "Connectivity - Entreprise\nConnectivity",
+                  value: 0),
+              bloc3(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) {
+                      return Band9();
+                    }));
+                  },
+                  screenHeight: screenHeight,
+                  screenWidth: screenWidth,
+                  text: "Connectivity - Facility Connectivity",
+                  value: 0),
+              bloc3(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) {
+                      return Band10();
+                    }));
+                  },
+                  screenHeight: screenHeight,
+                  screenWidth: screenWidth,
+                  text: "Intelligence - Shop floor Intelligence",
+                  value: 0),
+              bloc3(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) {
+                      return Band11();
+                    }));
+                  },
+                  screenHeight: screenHeight,
+                  screenWidth: screenWidth,
+                  text: "Intelligence - Entreprise Intelligence",
+                  value: 0),
+              bloc3(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) {
+                      return Band12();
+                    }));
+                  },
+                  screenHeight: screenHeight,
+                  screenWidth: screenWidth,
+                  text: "Intelligence - Facility Intelligence",
+                  value: 0),
+              bloc3(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) {
+                      return Band13();
+                    }));
+                  },
+                  screenHeight: screenHeight,
+                  screenWidth: screenWidth,
+                  text: "Talent Readiness-\nWorkforce Learning & Development",
+                  value: 0),
+              bloc3(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) {
+                      return Band14();
+                    }));
+                  },
+                  screenHeight: screenHeight,
+                  screenWidth: screenWidth,
+                  text: "Talent Readiness-\nLeadership Competency",
+                  value: 0),
+              bloc3(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) {
+                      return Band15();
+                    }));
+                  },
+                  screenHeight: screenHeight,
+                  screenWidth: screenWidth,
+                  text:
+                      "Structure & Management-Inter-and\nIntra - Company Collaboration",
+                  value: 0),
+              bloc3(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) {
+                      return Band16();
+                    }));
+                  },
+                  screenHeight: screenHeight,
+                  screenWidth: screenWidth,
+                  text: "Stategy and Governance",
+                  value: 0),
             ],
           ),
         ),
@@ -67,47 +241,58 @@ class CompanyPrograssState extends State<CompanyPrograss> {
     ));
   }
 
-  Container bloc3({required double screenHeight, required double screenWidth,required double value,required String text}) {
-    return Container(
-      margin: EdgeInsets.only(
-          left: screenWidth * 0.03,
-          top: screenHeight * 0.015,
-          right: screenWidth * 0.03,
-          bottom: screenHeight * 0.015),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: const Color.fromRGBO(167, 202, 240, 1),
-      ),
-      width: screenWidth,
-      height: screenHeight * 0.2,
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children:  [
-                Text(
-                  text,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                const Text('designation')
-              ],
-            ),
-            Container(
-              alignment: Alignment.topLeft,
-              margin: const EdgeInsets.only(top: 35, bottom: 20),
-              child: const Text(
-                'Assesment Progress',
-                style: TextStyle(fontWeight: FontWeight.bold),
+  Widget bloc3(
+      {required double screenHeight,
+      required double screenWidth,
+      required Function() onTap,
+      required double value,
+      required String text}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: EdgeInsets.only(
+            left: screenWidth * 0.03,
+            top: screenHeight * 0.015,
+            right: screenWidth * 0.03,
+            bottom: screenHeight * 0.015),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: const Color.fromRGBO(167, 202, 240, 1),
+        ),
+        width: screenWidth,
+        height: screenHeight * 0.2,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    text,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Icon(
+                    Icons.notifications,
+                    color: Colors.black,
+                  )
+                ],
               ),
-            ),
-            LinearProgressIndicator(
-              backgroundColor: const Color.fromRGBO(150, 226, 242, 1),
-              value: value,
-              color: const Color.fromRGBO(36, 36, 93, 1),
-            ),
-          ],
+              Container(
+                alignment: Alignment.topLeft,
+                margin: const EdgeInsets.only(top: 35, bottom: 20),
+                child: const Text(
+                  'Assesment Progress',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              LinearProgressIndicator(
+                backgroundColor: const Color.fromRGBO(150, 226, 242, 1),
+                value: value,
+                color: const Color.fromRGBO(36, 36, 93, 1),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -122,10 +307,15 @@ class CompanyPrograssState extends State<CompanyPrograss> {
       scrollDirection: Axis.horizontal,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: ["all", "Designation 1", "Designation 2", "Designation 3", "Designation 4"]
+        children: [
+          "all",
+          "Designation 1",
+          "Designation 2",
+          "Designation 3",
+          "Designation 4"
+        ]
             .map(
               (e) => Container(
-                
                 margin: const EdgeInsets.symmetric(horizontal: 10),
                 child: ElevatedButton(
                   onPressed: () => setState(() {}),
@@ -153,31 +343,74 @@ class CompanyPrograssState extends State<CompanyPrograss> {
       width: width,
       height: height * 0.29,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical:10.0,horizontal: 5),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 10,),
-         Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-           children: [
-            IconButton(onPressed: (){Navigator.pushReplacement(context,MaterialPageRoute(builder: (context){
-              return Dashboard();
-            }));}, icon: Icon(Icons.arrow_back,color: Colors.white,)),
-            Spacer(flex: 1,),
-             Text(widget.name,style: TextStyle(color: Colors.white,fontSize: 20),),
-             Spacer(flex: 2,),
-           ],
-         ),
-          Center(child: Text((widget.progress*100).toString()+"%",style:  TextStyle(fontSize: height*0.08,color: Colors.white,fontWeight: FontWeight.bold),)),
+        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          const SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              IconButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const DashboardPage();
+                    }));
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                  )),
+              const Spacer(
+                flex: 1,
+              ),
+              Text(
+                widget.name,
+                style: const TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              const Spacer(
+                flex: 2,
+              ),
+            ],
+          ),
+          Center(
+              child: Text(
+            "${widget.progress * 100}%",
+            style: TextStyle(
+                fontSize: height * 0.08,
+                color: Colors.white,
+                fontWeight: FontWeight.bold),
+          )),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-            ElevatedButton(onPressed: (){}, child: Text("Contact",style: TextStyle(color: Colors.black),),style: ElevatedButton.styleFrom(backgroundColor: Colors.white,fixedSize: Size(width*0.2, 30))),
-            SizedBox(width: width*0.015,),
-            ElevatedButton(onPressed: (){}, child: Text("Details"),style: ElevatedButton.styleFrom(backgroundColor: Color.fromRGBO(49, 195, 231, 1),fixedSize: Size(width*0.2, 30))),
-          ],)
-         
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(
+                        context, AppRoute.showContactCompanyPage);
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      fixedSize: Size(width * 0.2, 30)),
+                  child: const Text(
+                    "Contact",
+                    style: TextStyle(color: Colors.black),
+                  )),
+              SizedBox(
+                width: width * 0.015,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(
+                        context, AppRoute.showDetailsPage);
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(49, 195, 231, 1),
+                      fixedSize: Size(width * 0.2, 30)),
+                  child: const Text("Details")),
+            ],
+          )
         ]),
       ),
     );

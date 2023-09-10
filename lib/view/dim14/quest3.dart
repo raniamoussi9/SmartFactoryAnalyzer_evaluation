@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:smart_factory_analyzer/view/dim14/quest4.dart';
-import 'package:smart_factory_analyzer/view/dim2/quest4.dart';
 
 import '../welcome_page.dart';
 
@@ -15,17 +14,17 @@ class Quest3dim14 extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        title: Text('Assessment 14'),
+        title: const Text('Assessment 14'),
       ),
       body: Column(
         children: [
           SizedBox(height: MediaQuery.of(context).size.height*0.1),
-          Center(
+          const Center(
             child: Padding(
               padding: EdgeInsets.all(16.0),
               child: Text(
@@ -35,7 +34,7 @@ class Quest3dim14 extends StatelessWidget {
             ),
           ),
           SizedBox(height: MediaQuery.of(context).size.height*0.1),
-          Center(
+          const Center(
             child: Padding(
               padding: EdgeInsets.all(16.0),
               child: TextField(
@@ -52,10 +51,10 @@ class Quest3dim14 extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Quest4dim14()),
+            MaterialPageRoute(builder: (context) => const Quest4dim14()),
           );
         },
-        child: Icon(Icons.arrow_forward),
+        child: const Icon(Icons.arrow_forward),
       ),
     ));
   }

@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api, use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_element
 
 import 'package:flutter/material.dart';
+import 'package:smart_factory_analyzer/view/dim10/quest1.dart';
 import 'package:smart_factory_analyzer/view/dim11/band11.dart';
 
 Color myColor = Color.fromARGB(255, 36, 36, 93);
@@ -193,7 +194,7 @@ class _Band10State extends State<Band10> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Band11()),
+              MaterialPageRoute(builder: (context) => Quest1dim10()),
             );
           },
           child: Icon(Icons.arrow_forward),

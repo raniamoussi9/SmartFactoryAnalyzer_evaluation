@@ -1,7 +1,11 @@
 // ignore_for_file: library_private_types_in_public_api, use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_element
 
 import 'package:flutter/material.dart';
+import 'package:smart_factory_analyzer/core/app_const.dart';
+import 'package:smart_factory_analyzer/view/dim1/ques1.dart';
+import 'package:smart_factory_analyzer/view/dim10/quest1.dart';
 import 'package:smart_factory_analyzer/view/dim2/band2.dart';
+import 'package:smart_factory_analyzer/view/remarks.dart';
 
 Color myColor = Color.fromARGB(255, 36, 36, 93);
 Color myColor2 = Color.fromRGBO(49, 195, 231, 1);
@@ -89,7 +93,7 @@ class _Band1State extends State<Band1> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: myColor,
+        backgroundColor: myColor4,
         appBar: AppBar(
           backgroundColor: Colors.white,
           leading: IconButton(
@@ -133,7 +137,11 @@ class _Band1State extends State<Band1> {
           itemBuilder: (context, index) {
             return Column(
               children: [
-                Padding(
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                    color: myColor,
+                    borderRadius: BorderRadius.all(Radius.circular(15))),
                   padding: EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.height * 0.05),
                   child: ListTile(
@@ -142,9 +150,9 @@ class _Band1State extends State<Band1> {
                     tileColor: myColor4,
                     textColor: Colors.white,
                     iconColor: Colors.white,
-                    title: Text(propositions[index]),
+                    title: Text(propositions[index],style: TextStyle(fontSize: 16),),
                     contentPadding: EdgeInsets.all(2),
-                    leading: Radio(
+                    /*leading: Radio(
                       focusColor: Colors.white,
                       value: index,
                       groupValue: selectedProposition,
@@ -152,7 +160,7 @@ class _Band1State extends State<Band1> {
                         _selectProposition(index);
                         _saveSelection();
                       },
-                    ),
+                    ),*/
                     trailing: IconButton(
                       icon: Icon(
                         showDefinition[index]
@@ -170,7 +178,7 @@ class _Band1State extends State<Band1> {
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     child: Container(
                       padding: EdgeInsets.symmetric(vertical: 10),
-                      width: MediaQuery.of(context).size.width * 0.88,
+                      width: MediaQuery.of(context).size.width ,
                       color: myColor4,
                       child: Center(
                         child: Text(
@@ -191,12 +199,12 @@ class _Band1State extends State<Band1> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: myColor3,
           onPressed: () {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => Band2()),
+              MaterialPageRoute(builder: (context) => Question1Dim1()),
             );
           },
-          child: Icon(Icons.arrow_forward),
+          child: Icon(Icons.arrow_forward,color: AppConst.backgroundBlueColor,),
         ),
       ),
     );

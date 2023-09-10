@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_factory_analyzer/view/dim3/quest1.dart';
 import 'package:smart_factory_analyzer/view/fin_dim.dart';
+import 'package:smart_factory_analyzer/view/remarks.dart';
 
 import '../welcome_page.dart';
 
@@ -52,7 +53,7 @@ class Quest6dim16 extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => lastdimension()),
+            MaterialPageRoute(builder: (context) => Remarks(path: lastdimension())),
           );
         },
         child: Icon(Icons.arrow_forward),

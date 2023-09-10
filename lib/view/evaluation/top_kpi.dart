@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:smart_factory_analyzer/view/welcome_page.dart';
 
-import '../../utils/const.dart';
+import '../../core/const.dart';
 
 class TopKPI extends StatelessWidget {
   List<String> Informations = [

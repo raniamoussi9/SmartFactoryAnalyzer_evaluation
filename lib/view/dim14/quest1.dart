@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:smart_factory_analyzer/view/dim14/quest2.dart';
-import 'package:smart_factory_analyzer/view/dim2/quest2.dart';
 
 import '../welcome_page.dart';
 

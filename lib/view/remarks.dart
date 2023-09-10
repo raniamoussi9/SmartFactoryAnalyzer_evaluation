@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smart_factory_analyzer/view/input_remarks.dart';
 
+import '../controller/dimensionController.dart';
+import 'company_prograss.dart';
+
 class Remarks extends StatefulWidget {
-  const Remarks({super.key});
+  const Remarks({super.key, required this.path});
+  final Widget path;
 
   @override
   State<StatefulWidget> createState() => RemarksState();
@@ -60,7 +65,13 @@ class RemarksState extends State<Remarks> {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (_) {
+                                var provider = Provider.of<DimensionController>(context);
+                            return CompanyPrograss(progress: 1,name: provider.currentName,);
+                          }));
+                        },
                         style: TextButton.styleFrom(
                             backgroundColor:
                                 const Color.fromRGBO(38, 101, 170, 1),

@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:smart_factory_analyzer/view/dim2/quest1.dart';
+import 'package:smart_factory_analyzer/view/dim2/band2.dart';
 
-import '../welcome_page.dart';
+
+import '../remarks.dart';
+
 
 class Quest5dim1 extends StatelessWidget {
   const Quest5dim1({super.key});
@@ -53,7 +55,7 @@ class Quest5dim1 extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Quest1dim2()),
+            MaterialPageRoute(builder: (context) => Remarks(path: Band2(),)),
           );
         },
         child: Icon(Icons.arrow_forward),

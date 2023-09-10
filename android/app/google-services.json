@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "886417108771",
-    "project_id": "smartfactoryanalyzer",
-    "storage_bucket": "smartfactoryanalyzer.appspot.com"
+    "project_number": "537969446306",
+    "project_id": "smartfactoryanalyzer-5731b",
+    "storage_bucket": "smartfactoryanalyzer-5731b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:886417108771:android:7882ccafc66393bd8aa696",
+        "mobilesdk_app_id": "1:537969446306:android:80b2e23fd6aef91d6636fb",
         "android_client_info": {
           "package_name": "com.example.smart_factory_analyzer"
         }
       },
       "oauth_client": [
         {
-          "client_id": "886417108771-t2hih5n6j6rtn1rrer8o6moo9cettngc.apps.googleusercontent.com",
+          "client_id": "537969446306-ua2r4ta4irq2ntdk6u18htnfkuphsur6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBwzBxG9FQsjJE3qNIPRdp-dvTGQ4lLQM8"
+          "current_key": "AIzaSyBkHVWBGY6inRrBpxM4or-9oCAlJKOTsMY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "886417108771-t2hih5n6j6rtn1rrer8o6moo9cettngc.apps.googleusercontent.com",
+              "client_id": "537969446306-ua2r4ta4irq2ntdk6u18htnfkuphsur6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:smart_factory_analyzer/core/app_const.dart';
 import 'package:smart_factory_analyzer/view/dashboard.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class _SecondFormState extends State<SecondForm> {
     final double screenHight = MediaQuery.of(context).size.height;
     final double screenWidht = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 36, 36, 93),
+      backgroundColor: AppConst.backgroundBlueColor,
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         toolbarHeight: 138,
@@ -60,7 +61,7 @@ class _SecondFormState extends State<SecondForm> {
           onPressed: () {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => const Dashboard()),
+              MaterialPageRoute(builder: (context) => const DashboardPage()),
             );
           },
           icon: const Icon(

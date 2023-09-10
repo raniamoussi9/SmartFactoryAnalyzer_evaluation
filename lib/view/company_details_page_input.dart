@@ -1,205 +1,491 @@
 import 'package:flutter/foundation.dart';
-import 'package:smart_factory_analyzer/view/dashboard.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
+import 'package:smart_factory_analyzer/api/company_api.dart';
+import 'package:smart_factory_analyzer/controller/create_company_controller.dart';
+import 'package:smart_factory_analyzer/controller/login.dart';
+import 'package:smart_factory_analyzer/core/app_const.dart';
+import 'package:smart_factory_analyzer/core/app_route.dart';
+import 'package:smart_factory_analyzer/core/const.dart';
+import 'package:smart_factory_analyzer/model/company_model.dart';
+import 'package:smart_factory_analyzer/model/industry_group_model.dart';
 
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'company_details_page_input1.dart';
 
 class CompanyDetailsPageInput extends StatefulWidget {
   const CompanyDetailsPageInput({super.key});
 
   @override
-  State<CompanyDetailsPageInput> createState() => _CompanyDetailsPageInputState();
+  State<CompanyDetailsPageInput> createState() =>
+      _CompanyDetailsPageInputState();
 }
 
 class _CompanyDetailsPageInputState extends State<CompanyDetailsPageInput> {
-  final controller = PageController(viewportFraction: 0.8, keepPage: true);
-  final TextEditingController _controller1 = TextEditingController();
-  final TextEditingController _controller2 = TextEditingController();
-  final TextEditingController _controller3 = TextEditingController();
-  final TextEditingController _controller4 = TextEditingController();
-  final TextEditingController _controller5 = TextEditingController();
+  final TextEditingController _companyNameController = TextEditingController();
+  final TextEditingController _businessController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _countryController = TextEditingController();
+  final TextEditingController _cityController = TextEditingController();
+  final TextEditingController _assessmentRecordController =
+      TextEditingController();
+  final TextEditingController _factorySectionController =
+      TextEditingController();
+
+  final TextEditingController _companyGroupController = TextEditingController();
+  final TextEditingController _currencyController = TextEditingController();
+  final TextEditingController _annualController = TextEditingController();
+  final TextEditingController _amountController = TextEditingController();
+  final TextEditingController _employmentController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final double screenHight = MediaQuery.of(context).size.height;
-    final double screenWidht = MediaQuery.of(context).size.width;
-    final pages = List.generate(
-        3,
-        (index) => Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.grey.shade300,
-              ),
-              margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 4),
-              child: SizedBox(
-                height: 50,
-                child: Center(
-                    child: Text(
-                  "Page $index",
-                  style: const TextStyle(color: Colors.indigo),
-                )),
-              ),
-            ));
-    /****************************************** */
-    return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 36, 36, 93),
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-        toolbarHeight: screenHight * 0.15,
-        elevation: 14,
-        title: Center(
-            child: Text(
-          'Company Details',
-          style: GoogleFonts.poppins(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ),
-        )),
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(20),
-                bottomLeft: Radius.circular(20))),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) {
-              return const Dashboard();
-            }));
-          },
-          icon: const Icon(
-            Icons.chevron_left,
-            color: Colors.black,
-          ),
-        ),
-      ),
-      body: Column(
-        children: [
-          Center(
-              child: Padding(
-            padding: const EdgeInsets.only(top: 35),
-            child: Text(
-              'Please fill in the form to continue',
+    List<Widget> pages = [page1(), page2(), page3()];
+    CreateCompanyController provider =
+        Provider.of<CreateCompanyController>(context);
+    return Visibility(
+      visible: !provider.loading,
+      replacement: Scaffold(
+          body: Container(
+        alignment: Alignment.center,
+        height: ConstVariable.getWidth(context) * 0.4,
+        width: ConstVariable.getWidth(context) * 0.4,
+        child: const CircularProgressIndicator(),
+      )),
+      child: Scaffold(
+          backgroundColor: AppConst.backgroundBlueColor,
+          appBar: AppBar(
+            backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+            toolbarHeight: ConstVariable.getHeight(context) * 0.15,
+            elevation: 14,
+            title: Center(
+                child: Text(
+              'Company Details',
               style: GoogleFonts.poppins(
-                color: Colors.white,
-                fontWeight: FontWeight.w400,
                 fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+              ),
+            )),
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(20),
+                    bottomLeft: Radius.circular(20))),
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pushReplacementNamed(
+                    context, AppRoute.companyDetailsGlobalPage);
+                provider.resetIndexCompanyDetail();
+              },
+              icon: const Icon(
+                Icons.chevron_left,
+                color: Colors.black,
               ),
             ),
-          )),
-          inputFiled(
-              screenHight: screenHight,
-              screenWidht: screenWidht,
-              controller: _controller1,
-              hintText: "companyName"),
-          inputFiled(
-              screenHight: screenHight,
-              screenWidht: screenWidht,
-              controller: _controller2,
-              hintText: "Business entity,registration number"),
-          inputFiled(
-              screenHight: screenHight,
-              screenWidht: screenWidht,
-              controller: _controller3,
-              hintText: "address"),
-               inputFiled(
-              screenHight: screenHight,
-              screenWidht: screenWidht,
-              controller: _controller4,
-              hintText: "country"),
-          inputFiled(
-              screenHight: screenHight,
-              screenWidht: screenWidht,
-              controller: _controller5,
-              hintText: "city"),
-              
-          SizedBox(
-            height: screenHight * 0.1,
           ),
-          Row(
-            children: [
-              Padding(
-                  padding: EdgeInsets.only(
-                      left: screenWidht * 0.02, top: screenHight * 0.012),
-                  child: SmoothPageIndicator(
-                    controller: controller,
-                    count: pages.length,
-                    effect: const WormEffect(
-                      dotHeight: 10,
-                      dotWidth: 10,
-                      type: WormType.thinUnderground,
-                    ),
-                  )),
-              const Spacer(),
-              Padding(
-                  padding: EdgeInsets.only(
-                      left: screenWidht * 0.02, top: screenHight * 0.012),
-                  child: Ink(
-                    width: 60,
-                    height: 60,
-                    decoration: const ShapeDecoration(
-                        shape: CircleBorder(),
-                        color: Color.fromARGB(255, 38, 102, 170)),
-                    child: IconButton(
-                      icon: const Icon(Icons.chevron_right),
-                      iconSize: 24,
-                      color: const Color.fromARGB(255, 0, 0, 0),
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const CompanyDetailsPageInput1()),
-                        );
-                      },
-                    ),
-                  )),
-              SizedBox(
-                width: screenWidht * 0.1,
-              )
-            ],
+          body:
+              SingleChildScrollView(child: pages[provider.indexCompanyDetail])),
+    );
+  }
+
+  Widget page3() {
+    CreateCompanyController provider =
+        Provider.of<CreateCompanyController>(context);
+    return Column(
+      children: [
+        Center(
+            child: Padding(
+          padding: const EdgeInsets.only(top: 35),
+          child: Text(
+            'Please fill in the form to continue',
+            style: GoogleFonts.poppins(
+              color: Colors.white,
+              fontWeight: FontWeight.w400,
+              fontSize: 12,
+            ),
           ),
-        ],
+        )),
+        ConstVariable.inputFiled(
+            context: context,
+            controller: _annualController,
+            hintText: "annual manufacturing output"),
+        ConstVariable.inputFiled(
+            context: context,
+            controller: _factorySectionController,
+            hintText: "Factory Section"),
+        ConstVariable.inputFiled(
+            context: context,
+            controller: _amountController,
+            hintText: "Amount of func"),
+        ConstVariable.inputFiled(
+            context: context,
+            controller: _employmentController,
+            hintText: "Employment size"),
+        SizedBox(
+          height: ConstVariable.getHeight(context) * 0.2,
+        ),
+        Row(
+          children: [
+            threeDots(context: context, index: provider.indexCompanyDetail),
+            const Spacer(),
+            Padding(
+                padding: EdgeInsets.only(
+                    left: ConstVariable.getWidth(context) * 0.02,
+                    top: ConstVariable.getHeight(context) * 0.012),
+                child: Ink(
+                  width: 60,
+                  height: 60,
+                  decoration: const ShapeDecoration(
+                      shape: CircleBorder(),
+                      color: Color.fromARGB(255, 38, 102, 170)),
+                  child: IconButton(
+                    icon: const Icon(Icons.done),
+                    iconSize: 24,
+                    color: const Color.fromARGB(255, 0, 0, 0),
+                    onPressed: () async {
+                      if (_annualController.text.isNotEmpty &&
+                          _amountController.text.isNotEmpty &&
+                          _employmentController.text.isNotEmpty &&
+                          _factorySectionController.text.isNotEmpty) {
+                        final CompanyModel companyModel = CompanyModel(
+                            id: "",
+                            factorysection: _factorySectionController.text,
+                            assessmentRecord:
+                                _assessmentRecordController.text, //Todo
+                            companyName: _companyNameController.text,
+                            bern: _businessController.text,
+                            address: _addressController.text,
+                            dated: DateTime.now(),
+                            indusGroupId: provider.industryGroupModel.name,
+                            income: int.tryParse(_amountController.text) ?? 0,
+                            size: int.tryParse(_employmentController.text) ?? 0,
+                            exportation: false,
+                            multiproduction: false,
+                            preparedById: Provider.of<LoginControlller>(context,
+                                    listen: false)
+                                .user
+                                .id);
+                        provider.onChange(true);
+                        CompanyApi.addCompany(
+                                context: context, companyModel: companyModel)
+                            .then((value) {
+                          try {
+                            provider.onChange(false);
+                            if (((value['code'] as int) >= 200) &&
+                                ((value['code'] as int) < 300)) {
+                              // print(value['companyId']);
+                              provider.onChangeCompanyId(
+                                  value['assessmentRecord'] as String,_companyNameController.text);
+                              Navigator.pushReplacementNamed(
+                                  context, AppRoute.companyContactPage);
+                            } else {
+                              Fluttertoast.showToast(
+                                  backgroundColor: Colors.red,
+                                  msg: (value['message'] as String?) ??
+                                      "somthing wrong happend",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  textColor: Colors.white,
+                                  fontSize: 16.0);
+                            }
+                          } catch (e) {
+                            Fluttertoast.showToast(
+                                backgroundColor: Colors.red,
+                                msg: "somthing wrong happend",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIosWeb: 1,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
+                          }
+                        });
+                      } else {
+                        Fluttertoast.showToast(
+                            backgroundColor: Colors.red,
+                            msg: 'fill all the input',
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            textColor: Colors.white,
+                            fontSize: 16.0);
+                      }
+                      /*Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CompanyDetailsGlobalPage()),
+                      );*/
+                    },
+                  ),
+                )),
+            SizedBox(
+              width: ConstVariable.getWidth(context) * 0.1,
+            )
+          ],
+        ),
+      ],
+    );
+  }
+
+  Column page2() {
+    CreateCompanyController provider =
+        Provider.of<CreateCompanyController>(context);
+    return Column(
+      children: [
+        Center(
+            child: Padding(
+          padding: const EdgeInsets.only(top: 35),
+          child: Text(
+            'Please fill in the form to continue',
+            style: GoogleFonts.poppins(
+              color: Colors.white,
+              fontWeight: FontWeight.w400,
+              fontSize: 12,
+            ),
+          ),
+        )),
+        dropDownMenu(provider),
+        /*ConstVariable.inputFiled(
+            context: context,
+            controller: _indestryGroupController,
+            hintText: "industry group"),*/
+        ConstVariable.inputFiled(
+            context: context,
+            controller: _businessController,
+            hintText: "bern"),
+        ConstVariable.inputFiled(
+            context: context,
+            controller: _currencyController,
+            hintText: "currency"),
+        SizedBox(
+          height: ConstVariable.getHeight(context) * 0.2,
+        ),
+        Row(
+          children: [
+            threeDots(context: context, index: provider.indexCompanyDetail),
+            const Spacer(),
+            Padding(
+                padding: EdgeInsets.only(
+                    left: ConstVariable.getWidth(context) * 0.02,
+                    top: ConstVariable.getHeight(context) * 0.012),
+                child: Ink(
+                  width: 60,
+                  height: 60,
+                  decoration: const ShapeDecoration(
+                      shape: CircleBorder(),
+                      color: Color.fromARGB(255, 38, 102, 170)),
+                  child: IconButton(
+                    icon: const Icon(Icons.chevron_right),
+                    iconSize: 24,
+                    color: const Color.fromARGB(255, 0, 0, 0),
+                    onPressed: () {
+                      if (_currencyController.text.isNotEmpty &&
+                          provider.industryGroupModel != null &&
+                          _businessController.text.isNotEmpty) {
+                        Provider.of<CreateCompanyController>(context,
+                                listen: false)
+                            .onChangeIndexCompanyDetail();
+                      } else {
+                        Fluttertoast.showToast(
+                            backgroundColor: Colors.red,
+                            msg: 'fill all the input',
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            textColor: Colors.white,
+                            fontSize: 16.0);
+                      }
+                      /*Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CompanyDetailsPageInput2()),
+                      );*/
+                    },
+                  ),
+                )),
+            SizedBox(
+              width: ConstVariable.getWidth(context) * 0.1,
+            )
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget page1() {
+    CreateCompanyController provider =
+        Provider.of<CreateCompanyController>(context, listen: false);
+    return Column(
+      children: [
+        Center(
+            child: Padding(
+          padding: const EdgeInsets.only(top: 35),
+          child: Text(
+            'Please fill in the form to continue',
+            style: GoogleFonts.poppins(
+              color: Colors.white,
+              fontWeight: FontWeight.w400,
+              fontSize: 12,
+            ),
+          ),
+        )),
+        ConstVariable.inputFiled(
+            context: context,
+            controller: _companyNameController,
+            hintText: "companyName"),
+        ConstVariable.inputFiled(
+            context: context,
+            controller: _assessmentRecordController,
+            hintText: "assessmentRecord"),
+        ConstVariable.inputFiled(
+            context: context,
+            controller: _addressController,
+            hintText: "address"),
+        ConstVariable.inputFiled(
+            context: context,
+            controller: _countryController,
+            hintText: "country"),
+        ConstVariable.inputFiled(
+            context: context, controller: _cityController, hintText: "city"),
+        SizedBox(
+          height: ConstVariable.getHeight(context) * 0.1,
+        ),
+        Row(
+          children: [
+            threeDots(context: context, index: provider.indexCompanyDetail),
+            const Spacer(),
+            Padding(
+                padding: EdgeInsets.only(
+                    left: ConstVariable.getWidth(context) * 0.02,
+                    top: ConstVariable.getHeight(context) * 0.012),
+                child: Ink(
+                  width: 60,
+                  height: 60,
+                  decoration: const ShapeDecoration(
+                      shape: CircleBorder(),
+                      color: Color.fromARGB(255, 38, 102, 170)),
+                  child: IconButton(
+                    icon: const Icon(Icons.chevron_right),
+                    iconSize: 24,
+                    color: const Color.fromARGB(255, 0, 0, 0),
+                    onPressed: () {
+                      if (_companyNameController.text.isNotEmpty &&
+                          _assessmentRecordController.text.isNotEmpty &&
+                          _addressController.text.isNotEmpty &&
+                          _countryController.text.isNotEmpty &&
+                          _cityController.text.isNotEmpty) {
+                        Provider.of<CreateCompanyController>(context,
+                                listen: false)
+                            .onChangeIndexCompanyDetail();
+                      } else {
+                        Fluttertoast.showToast(
+                            backgroundColor: Colors.red,
+                            msg: 'fill all the input',
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            textColor: Colors.white,
+                            fontSize: 16.0);
+                      }
+                      /*Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CompanyDetailsPageInput1()),
+                      );*/
+                    },
+                  ),
+                )),
+            SizedBox(
+              width: ConstVariable.getWidth(context) * 0.1,
+            )
+          ],
+        ),
+      ],
+    );
+  }
+
+  Padding threeDots({required BuildContext context, required int index}) {
+    return Padding(
+        padding: EdgeInsets.only(
+            left: ConstVariable.getWidth(context) * 0.02,
+            top: ConstVariable.getHeight(context) * 0.012),
+        child: Row(
+          children: [
+            CircleAvatar(
+              backgroundColor: 0 == index
+                  ? AppConst.dotsActiveColor
+                  : AppConst.dotsInActiveColor,
+              radius: 0 == index ? 7 : 5,
+            ),
+            const SizedBox(
+              width: 5,
+            ),
+            CircleAvatar(
+              backgroundColor: 1 == index
+                  ? AppConst.dotsActiveColor
+                  : AppConst.dotsInActiveColor,
+              radius: 1 == index ? 7 : 5,
+            ),
+            const SizedBox(
+              width: 5,
+            ),
+            CircleAvatar(
+              backgroundColor: 2 == index
+                  ? AppConst.dotsActiveColor
+                  : AppConst.dotsInActiveColor,
+              radius: 2 == index ? 7 : 5,
+            ),
+          ],
+        ));
+  }
+
+  Widget dropDownMenu(CreateCompanyController provider) {
+    return Container(
+      height: ConstVariable.getHeight(context) * 0.07,
+      width: ConstVariable.getWidth(context),
+      padding: const EdgeInsets.all(5),
+      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+      decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 32, 32, 69),
+          borderRadius: BorderRadius.all(Radius.circular(10))),
+      child: DropdownButton<IndustryGroupModel>(
+        underline: const SizedBox(),
+        isExpanded: true,
+        dropdownColor: Color.fromARGB(255, 32, 32, 69),
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        /*style: TextStyle(color: Colors.black,
+                fontWeight: FontWeight.w300,
+                fontSize: 15,),*/
+        /*hint: const Text('Select a Industry Group ',style: TextStyle(color: Color.fromARGB(146, 255, 255, 255),
+                fontWeight: FontWeight.w300,
+                fontSize: 14,),),*/
+        value: provider.industryGroupModel,
+        onChanged: (IndustryGroupModel? newValue) {
+          if (newValue != null) {
+            provider.onChangeIndustryGroup(newValue);
+          } else {
+            provider.onChangeIndustryGroup(provider.listOfIndustryGroup[0]);
+          }
+        },
+        items: provider.listOfIndustryGroup
+            .sublist(1)
+            .map<DropdownMenuItem<IndustryGroupModel>>(
+                (IndustryGroupModel industryGroupModel) {
+          return DropdownMenuItem<IndustryGroupModel>(
+            value: industryGroupModel,
+            child: Text(
+              industryGroupModel.name,
+              style: TextStyle(
+                color: Color.fromARGB(180, 255, 255, 255),
+                fontWeight: FontWeight.w300,
+                fontSize: 14,
+              ),
+            ),
+          );
+        }).toList(),
       ),
     );
   }
 
-  Center inputFiled(
-      {required double screenHight,
-      required double screenWidht,
-      required String hintText,
-      required TextEditingController controller}) {
-    return Center(
-      child: Padding(
-          padding: EdgeInsets.only(
-              top: screenHight * 0.015,
-              left: screenWidht * 0.02,
-              right: screenWidht * 0.02),
-          child: TextField(
-            controller: controller,
-            onChanged: (value) {
-              if (kDebugMode) {
-                print("The value entered is : $value");
-              }
-            },
-            cursorColor: const Color.fromARGB(255, 255, 255, 255),
-            style: const TextStyle(color: Colors.white),
-            decoration: InputDecoration(
-              hintStyle: const TextStyle(
-                color: Color.fromARGB(146, 255, 255, 255),
-                fontWeight: FontWeight.w300,
-                fontSize: 14,
-              ),
-              hintText: hintText,
-              filled: true,
-              fillColor: const Color.fromARGB(255, 32, 32, 69),
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15),
-              ),
-            ),
-          )),
-    );
-  }
+  
 }

@@ -191,7 +191,7 @@ class _Band2State extends State<Band2> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: myColor3,
           onPressed: () {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => Band3()),
             );

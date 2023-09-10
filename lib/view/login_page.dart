@@ -1,10 +1,9 @@
 // ignore_for_file: prefer_const_constructors, duplicate_import, prefer_const_literals_to_create_immutables
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:smart_factory_analyzer/controller/login_function.dart';
+import 'package:smart_factory_analyzer/api/login_function.dart';
 import 'package:smart_factory_analyzer/view/dashboard.dart';
 import 'welcome_page.dart';
 
@@ -127,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                           setState(() {
                             loading = true;
                           });
-                          signIn(_userName.text, _password.text, context)
+                          AuthApi.signIn(_userName.text, _password.text, context)
                               .then((value) {
                             setState(() {
                               loading = false;

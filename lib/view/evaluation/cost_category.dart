@@ -4,7 +4,7 @@ import 'package:smart_factory_analyzer/view/evaluation/top_kpi.dart';
 
 import 'package:smart_factory_analyzer/view/welcome_page.dart';
 
-import '../../utils/const.dart';
+import '../../core/const.dart';
 
 class CostCategory extends StatelessWidget {
 

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:smart_factory_analyzer/view/dim13/band13.dart';
 import 'package:smart_factory_analyzer/view/dim13/quest1.dart';
-import 'package:smart_factory_analyzer/view/dim2/quest5.dart';
-
-import '../welcome_page.dart';
+import 'package:smart_factory_analyzer/view/remarks.dart';
 
 class Quest4dim12 extends StatelessWidget {
   const Quest4dim12({super.key});
@@ -11,21 +10,21 @@ class Quest4dim12 extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          backgroundColor: myColor,
+      backgroundColor: myColor,
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        title: Text('Assessment 12'),
+        title: const Text('Assessment 12'),
       ),
       body: Column(
         children: [
-          SizedBox(height: MediaQuery.of(context).size.height*0.1),
-          Center(
+          SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+          const Center(
             child: Padding(
               padding: EdgeInsets.all(16.0),
               child: Text(
@@ -34,8 +33,8 @@ class Quest4dim12 extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: MediaQuery.of(context).size.height*0.1),
-          Center(
+          SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+          const Center(
             child: Padding(
               padding: EdgeInsets.all(16.0),
               child: TextField(
@@ -52,10 +51,14 @@ class Quest4dim12 extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Quest1dim13()),
+            MaterialPageRoute(
+                builder: (context) => Remarks(
+                        path: Remarks(
+                      path: Band13(),
+                    ))),
           );
         },
-        child: Icon(Icons.arrow_forward),
+        child: const Icon(Icons.arrow_forward),
       ),
     ));
   }

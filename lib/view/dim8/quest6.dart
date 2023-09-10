@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:smart_factory_analyzer/view/dim3/quest1.dart';
 import 'package:smart_factory_analyzer/view/dim9/quest1.dart';
+import 'package:smart_factory_analyzer/view/remarks.dart';
 
-import '../welcome_page.dart';
+import '../dim9/band9.dart';
+
 
 class Quest6dim8 extends StatelessWidget {
   const Quest6dim8({super.key});
@@ -52,7 +54,7 @@ class Quest6dim8 extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Quest1dim9()),
+            MaterialPageRoute(builder: (context) => Remarks(path: Band9())),
           );
         },
         child: Icon(Icons.arrow_forward),
