@@ -3,9 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_factory_analyzer/core/app_const.dart';
 import 'package:smart_factory_analyzer/view/dim1/ques1.dart';
-import 'package:smart_factory_analyzer/view/dim10/quest1.dart';
-import 'package:smart_factory_analyzer/view/dim2/band2.dart';
-import 'package:smart_factory_analyzer/view/remarks.dart';
+
 
 Color myColor = Color.fromARGB(255, 36, 36, 93);
 Color myColor2 = Color.fromRGBO(49, 195, 231, 1);

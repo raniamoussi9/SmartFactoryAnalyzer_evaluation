@@ -29,8 +29,8 @@ class _Band9State extends State<Band9> {
     "Facility assets and systems are not connected; Equipment, machinery and systems are not able to interact or exchange information.",
     "Facility assets and systems are connected via multiple communication technologies and protocols; There are formal network links that will enable equipment, machinery and computer-based systems to interact or exchange information.",
     "Facility assets and systems are interoperable across multiple communication technologies and protocols; Equipment, machinery and computer-based systems are able to interact and exchange information without significant restrictions.",
-    "Interoperable facility assets and systems are secure; There is a vigilant and resilient security framework to protect the network of interoperable equipment, machinery and computer-based systems from undesired access and/or disruption.",
     "Interoperable facility assets and systems are secure and capable of real-time communication; Interoperable and secure network links across different equipment, machinery and computer-based systems are able to interact or exchange information as it is generated without delay.",
+    "Interoperable facility assets and systems are secure; There is a vigilant and resilient security framework to protect the network of interoperable equipment, machinery and computer-based systems from undesired access and/or disruption.",
     "Interoperable facility assets and systems are secure, capable of real-time communication, and scalable; Existing networks can be configured quickly and easily to accommodate any modifications made to the existing composition of equipment, machinery and computer-based systems."
   ];
 
