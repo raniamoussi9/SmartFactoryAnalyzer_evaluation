@@ -60,7 +60,7 @@ class _ShowDetailsCompanyPageState extends State<ShowDetailsCompanyPage> {
           backgroundColor: Colors.white,
           toolbarHeight: ConstVariable.getHeight(context) * 0.09,
           elevation: 14,
-          centerTitle: true,
+          
           title: Text(
             'Details',
             style: GoogleFonts.poppins(
@@ -78,8 +78,7 @@ class _ShowDetailsCompanyPageState extends State<ShowDetailsCompanyPage> {
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) {
                 return CompanyPrograss(
-                  progress: 0,
-                  name: "",
+                  
                 );
               }));
             },

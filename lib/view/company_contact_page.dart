@@ -3,9 +3,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_factory_analyzer/core/app_const.dart';
 import 'package:smart_factory_analyzer/model/company_contact_model.dart';
+import 'package:smart_factory_analyzer/view/company_details_global_page.dart';
 import 'package:smart_factory_analyzer/view/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:smart_factory_analyzer/view/widget/loading_page.dart';
 
 import '../api/company_api.dart';
 import '../controller/create_company_controller.dart';
@@ -33,13 +35,7 @@ class _CompanyContactPageState extends State<CompanyContactPage> {
     CreateCompanyController provider =
         Provider.of<CreateCompanyController>(context);
     return Visibility(
-      replacement: Scaffold(
-          body: Container(
-        alignment: Alignment.center,
-        height: ConstVariable.getWidth(context) * 0.4,
-        width: ConstVariable.getWidth(context) * 0.4,
-        child: const CircularProgressIndicator(),
-      )),
+      replacement: LoadingWidgetForTheApp(),
       visible: !provider.loading,
       child: Scaffold(
         backgroundColor: AppConst.backgroundBlueColor,
@@ -47,15 +43,14 @@ class _CompanyContactPageState extends State<CompanyContactPage> {
           backgroundColor: const Color.fromARGB(255, 255, 255, 255),
           toolbarHeight: screenHight * 0.15,
           elevation: 14,
-          title: Center(
-              child: Text(
+          title: Text(
             'Company Contacts',
             style: GoogleFonts.poppins(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              color: Colors.black,
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+          color: Colors.black,
             ),
-          )),
+          ),
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(20),
@@ -64,7 +59,7 @@ class _CompanyContactPageState extends State<CompanyContactPage> {
             onPressed: () {
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) {
-                return const DashboardPage();
+                return const CompanyDetailsGlobalPage();
               }));
             },
             icon: const Icon(
@@ -88,34 +83,29 @@ class _CompanyContactPageState extends State<CompanyContactPage> {
                   ),
                 ),
               )),
-              inputFiled(
-                  screenHight: screenHight,
-                  screenWidht: screenWidht,
+               ConstVariable.inputFiled(
+                 context: context,
                   controller: _designationController,
                   hintText: "Designation"),
-              inputFiled(
-                  screenHight: screenHight,
-                  screenWidht: screenWidht,
+               ConstVariable.inputFiled(
+                 context: context,
                   controller: _firstNameController,
                   hintText: "First Name"),
-              inputFiled(
-                  screenHight: screenHight,
-                  screenWidht: screenWidht,
+               ConstVariable.inputFiled(
+                 context: context,
                   controller: _lastNameController,
                   hintText: "Last Name"),
-              inputFiled(
-                  screenHight: screenHight,
-                  screenWidht: screenWidht,
+               ConstVariable.inputFiled(
+                 context: context,
                   controller: _titleController,
                   hintText: "Title"),
-              inputFiled(
-                  screenHight: screenHight,
-                  screenWidht: screenWidht,
+               ConstVariable.inputFiled(
+                 context: context,
                   controller: _emailController,
                   hintText: "Email"),
-              inputFiled(
-                  screenHight: screenHight,
-                  screenWidht: screenWidht,
+              ConstVariable.inputFiled(
+                isTHereNext: false,
+                 context: context,
                   controller: _phoneNumberController,
                   hintText: "phone Number"),
               SizedBox(
@@ -150,7 +140,7 @@ class _CompanyContactPageState extends State<CompanyContactPage> {
                       provider.onChange(false);
                       if ((value['code'] as int >= 200 &&
                           (value['code'] as int < 300))) {
-                        Navigator.pop(context);
+                        Navigator.pushReplacementNamed(context, AppRoute.scopeOfAssessment);
                       } else {
                         Fluttertoast.showToast(
                             backgroundColor: Colors.red,
@@ -194,41 +184,5 @@ class _CompanyContactPageState extends State<CompanyContactPage> {
     );
   }
 
-  Center inputFiled(
-      {required double screenHight,
-      required double screenWidht,
-      required String hintText,
-      required TextEditingController controller}) {
-    return Center(
-      child: Padding(
-          padding: EdgeInsets.only(
-              top: screenHight * 0.015,
-              left: screenWidht * 0.02,
-              right: screenWidht * 0.02),
-          child: TextField(
-            controller: controller,
-            onChanged: (value) {
-              if (kDebugMode) {
-                print("The value entered is : $value");
-              }
-            },
-            cursorColor: const Color.fromARGB(255, 255, 255, 255),
-            style: const TextStyle(color: Colors.white),
-            decoration: InputDecoration(
-              hintStyle: const TextStyle(
-                color: Color.fromARGB(146, 255, 255, 255),
-                fontWeight: FontWeight.w300,
-                fontSize: 14,
-              ),
-              hintText: hintText,
-              filled: true,
-              fillColor: const Color.fromARGB(255, 32, 32, 69),
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15),
-              ),
-            ),
-          )),
-    );
-  }
+ 
 }

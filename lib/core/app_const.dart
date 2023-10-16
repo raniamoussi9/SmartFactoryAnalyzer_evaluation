@@ -10,5 +10,7 @@ class AppConst {
   static Color backgroundBlueColor = const Color.fromARGB(255, 36, 36, 93);
   static Color colorCompanyDetails = const Color.fromRGBO(45, 197, 229, 1);
   static Color blueColorOfButton = const Color.fromRGBO(38, 101, 170, 1);
+   static Color backgroundcolorforradioElment = const Color.fromRGBO(32, 32, 69, 1);
+  
   
 }

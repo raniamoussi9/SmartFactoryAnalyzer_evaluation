@@ -8,6 +8,7 @@ class CompanyModel {
   final String indusGroupId;
   final String factorysection;
   final int income;
+  final double advancement;
   final int size;
   final bool exportation;
   final bool multiproduction;
@@ -26,7 +27,8 @@ class CompanyModel {
       required this.size,
       required this.exportation,
       required this.multiproduction,
-      required this.preparedById});
+      required this.preparedById,
+      required this.advancement});
   factory CompanyModel.fromJson(Map<String, dynamic> json) {
     return CompanyModel(
       id: json['_id'],
@@ -42,17 +44,19 @@ class CompanyModel {
       exportation: json['exportation'],
       multiproduction: json['multiproduction'],
       preparedById: json['preparedBy'],
+      advancement: double.parse(json['advancement'].toString())
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       '_id': id,
+      'advancement':advancement,
       'assessmentRecord': assessmentRecord,
       'companyName': companyName,
       'bern': bern,
       'address': address,
-      'factorysection':factorysection,
+      'factorysection': factorysection,
       'dated': dated.toIso8601String(),
       'indusGroup': indusGroupId,
       'income': income,

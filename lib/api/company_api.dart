@@ -39,6 +39,26 @@ class CompanyApi {
     }
   }
 
+  static Future<Map> updateCompanyAdvance(String companyId) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String token = prefs.getString("token") ?? "";
+    final Map<String, String> headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token',
+      'Charset': 'utf-8'
+    };
+    String url = "${AppConst.apiUrl}/company/update/$companyId";
+
+    try {
+      final response = await http.put(Uri.parse(url), headers: headers);
+      return {'code': response.statusCode, 'message': response.body};
+    } catch (error) {
+      // Handle any potential errors here
+      print(error.toString());
+      return {'code': 400, "message": error};
+    }
+  }
+
   static Future<Map<String, Object>> addCompanyContact(
       {required BuildContext context,
       required CompanyContactModel companyContactModel}) async {
@@ -107,9 +127,9 @@ class CompanyApi {
       User info = await provider.getUserName();
       if (industryId.isNotEmpty) {
         url =
-            "${AppConst.apiUrl}/company/list?userId=${info.id}&indusGroup=$industryId";
+            "${AppConst.apiUrl}/company/list?indusGroup=$industryId";
       } else {
-        url = "${AppConst.apiUrl}/company/list?userId=${info.id}";
+        url = "${AppConst.apiUrl}/company/list";
       }
       final response = await http.get(Uri.parse(url), headers: headers);
 

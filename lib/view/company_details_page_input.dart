@@ -12,6 +12,7 @@ import 'package:smart_factory_analyzer/model/industry_group_model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:smart_factory_analyzer/view/widget/loading_page.dart';
 
 class CompanyDetailsPageInput extends StatefulWidget {
   const CompanyDetailsPageInput({super.key});
@@ -23,11 +24,13 @@ class CompanyDetailsPageInput extends StatefulWidget {
 
 class _CompanyDetailsPageInputState extends State<CompanyDetailsPageInput> {
   final TextEditingController _companyNameController = TextEditingController();
-  final TextEditingController _businessController = TextEditingController();
+
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _countryController = TextEditingController();
   final TextEditingController _cityController = TextEditingController();
   final TextEditingController _assessmentRecordController =
+      TextEditingController();
+  final TextEditingController _businessEntityRegistrationAssessment =
       TextEditingController();
   final TextEditingController _factorySectionController =
       TextEditingController();
@@ -45,28 +48,21 @@ class _CompanyDetailsPageInputState extends State<CompanyDetailsPageInput> {
         Provider.of<CreateCompanyController>(context);
     return Visibility(
       visible: !provider.loading,
-      replacement: Scaffold(
-          body: Container(
-        alignment: Alignment.center,
-        height: ConstVariable.getWidth(context) * 0.4,
-        width: ConstVariable.getWidth(context) * 0.4,
-        child: const CircularProgressIndicator(),
-      )),
+      replacement: LoadingWidgetForTheApp(),
       child: Scaffold(
           backgroundColor: AppConst.backgroundBlueColor,
           appBar: AppBar(
             backgroundColor: const Color.fromARGB(255, 255, 255, 255),
             toolbarHeight: ConstVariable.getHeight(context) * 0.15,
             elevation: 14,
-            title: Center(
-                child: Text(
+            title: Text(
               'Company Details',
               style: GoogleFonts.poppins(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
                 color: Colors.black,
               ),
-            )),
+            ),
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(20),
@@ -118,6 +114,7 @@ class _CompanyDetailsPageInputState extends State<CompanyDetailsPageInput> {
             controller: _amountController,
             hintText: "Amount of func"),
         ConstVariable.inputFiled(
+            isTHereNext: false,
             context: context,
             controller: _employmentController,
             hintText: "Employment size"),
@@ -153,7 +150,7 @@ class _CompanyDetailsPageInputState extends State<CompanyDetailsPageInput> {
                             assessmentRecord:
                                 _assessmentRecordController.text, //Todo
                             companyName: _companyNameController.text,
-                            bern: _businessController.text,
+                            bern: _businessEntityRegistrationAssessment.text,
                             address: _addressController.text,
                             dated: DateTime.now(),
                             indusGroupId: provider.industryGroupModel.name,
@@ -161,10 +158,16 @@ class _CompanyDetailsPageInputState extends State<CompanyDetailsPageInput> {
                             size: int.tryParse(_employmentController.text) ?? 0,
                             exportation: false,
                             multiproduction: false,
+                            advancement: 0,
                             preparedById: Provider.of<LoginControlller>(context,
                                     listen: false)
                                 .user
-                                .id);
+                                .userName);
+                        print(Provider.of<LoginControlller>(context,
+                                listen: false)
+                            .user
+                            .id);
+                        print("-------------------------------");
                         provider.onChange(true);
                         CompanyApi.addCompany(
                                 context: context, companyModel: companyModel)
@@ -174,8 +177,11 @@ class _CompanyDetailsPageInputState extends State<CompanyDetailsPageInput> {
                             if (((value['code'] as int) >= 200) &&
                                 ((value['code'] as int) < 300)) {
                               // print(value['companyId']);
+
                               provider.onChangeCompanyId(
-                                  value['assessmentRecord'] as String,_companyNameController.text);
+                                  value['assessmentRecord'] as String,
+                                  _companyNameController.text);
+                              provider.resetCompanyAdvancement();
                               Navigator.pushReplacementNamed(
                                   context, AppRoute.companyContactPage);
                             } else {
@@ -249,10 +255,7 @@ class _CompanyDetailsPageInputState extends State<CompanyDetailsPageInput> {
             context: context,
             controller: _indestryGroupController,
             hintText: "industry group"),*/
-        ConstVariable.inputFiled(
-            context: context,
-            controller: _businessController,
-            hintText: "bern"),
+
         ConstVariable.inputFiled(
             context: context,
             controller: _currencyController,
@@ -280,8 +283,7 @@ class _CompanyDetailsPageInputState extends State<CompanyDetailsPageInput> {
                     color: const Color.fromARGB(255, 0, 0, 0),
                     onPressed: () {
                       if (_currencyController.text.isNotEmpty &&
-                          provider.industryGroupModel != null &&
-                          _businessController.text.isNotEmpty) {
+                          provider.industryGroupModel != null) {
                         Provider.of<CreateCompanyController>(context,
                                 listen: false)
                             .onChangeIndexCompanyDetail();
@@ -339,6 +341,10 @@ class _CompanyDetailsPageInputState extends State<CompanyDetailsPageInput> {
             hintText: "assessmentRecord"),
         ConstVariable.inputFiled(
             context: context,
+            controller: _businessEntityRegistrationAssessment,
+            hintText: "Business Entity Registration"),
+        ConstVariable.inputFiled(
+            context: context,
             controller: _addressController,
             hintText: "address"),
         ConstVariable.inputFiled(
@@ -346,7 +352,10 @@ class _CompanyDetailsPageInputState extends State<CompanyDetailsPageInput> {
             controller: _countryController,
             hintText: "country"),
         ConstVariable.inputFiled(
-            context: context, controller: _cityController, hintText: "city"),
+            isTHereNext: false,
+            context: context,
+            controller: _cityController,
+            hintText: "city"),
         SizedBox(
           height: ConstVariable.getHeight(context) * 0.1,
         ),
@@ -486,6 +495,4 @@ class _CompanyDetailsPageInputState extends State<CompanyDetailsPageInput> {
       ),
     );
   }
-
-  
 }

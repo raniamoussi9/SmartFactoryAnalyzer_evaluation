@@ -5,7 +5,7 @@ import 'package:smart_factory_analyzer/controller/dasboard_controller.dart';
 import 'package:smart_factory_analyzer/controller/login.dart';
 import 'package:smart_factory_analyzer/core/app_route.dart';
 
-import 'controller/dimensionController.dart';
+import 'controller/dimension_controller.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

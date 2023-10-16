@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_factory_analyzer/api/dasboard_api.dart';
 import 'package:smart_factory_analyzer/controller/create_company_controller.dart';
-import 'package:smart_factory_analyzer/controller/dimensionController.dart';
+import 'package:smart_factory_analyzer/controller/dimension_controller.dart';
 import 'package:smart_factory_analyzer/controller/login.dart';
 import 'package:smart_factory_analyzer/core/const.dart';
 import 'package:smart_factory_analyzer/model/company_model.dart';
 import 'package:smart_factory_analyzer/model/industry_group_model.dart';
-import 'package:smart_factory_analyzer/view/company_details.dart';
+import 'package:smart_factory_analyzer/view/company_details_global_page.dart';
 import 'package:smart_factory_analyzer/view/company_prograss.dart';
 import 'package:smart_factory_analyzer/view/widget/emptyList.dart';
 
 import '../api/company_api.dart';
 import '../model/Indus.dart';
+import 'company_global_page.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -58,6 +59,8 @@ class DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.height;
+    CreateCompanyController provider =
+        Provider.of<CreateCompanyController>(context, listen: false);
     return Visibility(
       visible: isReady,
       replacement: const Scaffold(
@@ -67,10 +70,14 @@ class DashboardPageState extends State<DashboardPage> {
       child: Scaffold(
           floatingActionButton: FloatingActionButton(
             child: const Icon(Icons.add),
-            onPressed: () => Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const CompanyDetailsGlobalPage())),
+            onPressed: () {
+              provider.onChangeCompanyId("", "");
+              provider.resetCompanyAdvancement();
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const CompanyGlobalPage()));
+            },
           ),
           body: SafeArea(
             child: Container(
@@ -146,7 +153,7 @@ class DashboardPageState extends State<DashboardPage> {
                                   screenHeight:
                                       ConstVariable.getHeight(context),
                                   screenWidth: ConstVariable.getHeight(context),
-                                  value: 0.2,
+                                  index: index,
                                   company: companyList[index]);
                             },
                           ),
@@ -165,7 +172,7 @@ class DashboardPageState extends State<DashboardPage> {
   Widget bloc3(
       {required double screenHeight,
       required double screenWidth,
-      required double value,
+      required int index,
       required CompanyModel company}) {
     return GestureDetector(
       onTap: () {
@@ -173,12 +180,13 @@ class DashboardPageState extends State<DashboardPage> {
             .onChangeCompanyId(company.assessmentRecord, company.companyName);
         Provider.of<DimensionController>(context, listen: false)
             .onChange(company.companyName);
+        Provider.of<CreateCompanyController>(context, listen: false)
+            .onChangeCompanyIndex(index);
+        Provider.of<CreateCompanyController>(context, listen: false)
+            .onChangeCompanyAdvancement(value: company.advancement);
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) {
-          return CompanyPrograss(
-            progress: value,
-            name: company.companyName,
-          );
+          return CompanyPrograss();
         }));
       },
       child: Container(
@@ -217,7 +225,7 @@ class DashboardPageState extends State<DashboardPage> {
               ),
               LinearProgressIndicator(
                 backgroundColor: const Color.fromRGBO(150, 226, 242, 1),
-                value: value,
+                value: company.advancement / 100,
                 color: const Color.fromRGBO(36, 36, 93, 1),
               ),
             ],
@@ -252,7 +260,7 @@ class DashboardPageState extends State<DashboardPage> {
                   return bloc3(
                       screenHeight: ConstVariable.getHeight(context),
                       screenWidth: ConstVariable.getHeight(context),
-                      value: 0.2,
+                      index: index,
                       company: comapanyList[index]);
                 },
               ),

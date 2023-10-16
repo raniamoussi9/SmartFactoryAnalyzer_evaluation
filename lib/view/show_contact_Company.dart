@@ -45,7 +45,7 @@ class _ShowContactCompanyState extends State<ShowContactCompany> {
           backgroundColor: Colors.white,
           toolbarHeight: ConstVariable.getHeight(context) * 0.09,
           elevation: 14,
-          centerTitle: true,
+          
           title: Text(
             'Contacts',
             style: GoogleFonts.poppins(
@@ -63,8 +63,7 @@ class _ShowContactCompanyState extends State<ShowContactCompany> {
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) {
                 return const CompanyPrograss(
-                  progress: 0,
-                  name: "",
+                  
                 );
               }));
             },

@@ -106,8 +106,8 @@ class _LoginPageState extends State<LoginPage> {
                       height: MediaQuery.of(context).size.height * 0.14,
                     ),
                     textField(context,
-                        controller: _userName, text: "User Name"),
-                    textField(context, controller: _password, text: "Password"),
+                        controller: _userName, text: "User Name",isThereNext: true),
+                    textField(context, controller: _password, text: "Password",isThereNext: false),
                     Container(
                       margin: EdgeInsets.only(
                           top: MediaQuery.of(context).size.height * 0.06),
@@ -150,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Container textField(BuildContext context,
-      {required TextEditingController controller, required String text}) {
+      {required TextEditingController controller, required String text,required bool isThereNext}) {
     return Container(
       decoration: BoxDecoration(
         color: myColor4,
@@ -171,6 +171,7 @@ class _LoginPageState extends State<LoginPage> {
         height: 42,
         width: MediaQuery.of(context).size.width * 0.7,
         child: TextFormField(
+          textInputAction: isThereNext? TextInputAction.next:TextInputAction.done,
           validator: (value) {
             if (value == null || value.isEmpty) {
               return "require";

@@ -1,5 +1,9 @@
 import '../model/dimension_input_model.dart';
 
+List<String> dimensionName = [
+  ""
+];
+
 List<DimensionInputModel> dimensionInputModel = [
   DimensionInputModel(bands: [
     BandModel(
@@ -502,52 +506,58 @@ List<DimensionInputModel> dimensionInputModel = [
         bandIndex: 3,
         description:
             "Continuous L&D programmes are formally aligned with the organization’s business needs and human resources (HR) functions; There is a continuous L&D curriculum that is integrated with organizational objectives, talent attraction and career development pathways.",
-    bandName: "Integrated"),
+        bandName: "Integrated"),
     BandModel(
         bandIndex: 4,
         description:
             "Integrated L&D programmes are actively developed, refreshed and customized based on insights provided by key stakeholders through feedback loops; Formal feedback channels are in place to allow integrated L&D programmes to be jointly curated and updated by employees, HR and business teams.",
-    bandName: "Adaptive"),
+        bandName: "Adaptive"),
     BandModel(
         bandIndex: 5,
         description:
             "Active efforts are made to identify and incorporate innovative L&D practices and training for future skillsets into the adaptive L&D programmes; There are proactive steps to incorporate requirements for future skillsets and novel L&D methodologies into existing L&D programmes.",
-  bandName: "Forward-looking"),
+        bandName: "Forward-looking"),
   ], questions: [
     'Describe the workforce learning and development processes for all the employees in the company.',
     'How are the training programmes for employees being identified?',
     'Decribe the feedback process before and after the training completion. How are are the training programmes being restructured and improved based on the stakeholders feedback ?',
     'Decribe your current workforce digital capability, skills and competencies.',
     'How integrated is the learning and development curriculum with the business objectives in Industry 4.0 transformation?',
-    'How is the learning and development curriculum being constantly revised based on the latest technology trends?',            
+    'How is the learning and development curriculum being constantly revised based on the latest technology trends?',
   ])
   //dim14
   ,
   DimensionInputModel(bands: [
     BandModel(
         bandIndex: 0,
-        description:"Management is unfamiliar with the most recent trends and technologies; Management is unacquainted with the latest concepts that can enable the next phase of advancement.",
+        description:
+            "Management is unfamiliar with the most recent trends and technologies; Management is unacquainted with the latest concepts that can enable the next phase of advancement.",
         bandName: "Unfamiliar"),
     BandModel(
         bandIndex: 1,
-        description:"Management has some awareness, through ad-hoc channels, ofthe most recent trends and technologies; Management is partially familiar with the latest concepts that can enable the next phase of advancement.",
+        description:
+            "Management has some awareness, through ad-hoc channels, ofthe most recent trends and technologies; Management is partially familiar with the latest concepts that can enable the next phase of advancement.",
         bandName: "Limited Understanding"),
     BandModel(
         bandIndex: 2,
-        description:"Management is well-informed, through formal channels and avenues of the most recent trends and technologies; Management is fully familiar with the latest concepts that can enable the next phase of advancement.",
-    bandName: "Informed"),
+        description:
+            "Management is well-informed, through formal channels and avenues of the most recent trends and technologies; Management is fully familiar with the latest concepts that can enable the next phase of advancement.",
+        bandName: "Informed"),
     BandModel(
         bandIndex: 3,
-        description:"Management is reliant on external partners to develop initiatives that leverage on the most recent trends and technologies to improve at least one area of the organization; With external assistance, management is able to apply the latest concepts to enable improvements in at least one area.",
-    bandName: "Semi-Dependent"),
+        description:
+            "Management is reliant on external partners to develop initiatives that leverage on the most recent trends and technologies to improve at least one area of the organization; With external assistance, management is able to apply the latest concepts to enable improvements in at least one area.",
+        bandName: "Semi-Dependent"),
     BandModel(
         bandIndex: 4,
-        description:"Management is able to, with relative independence, develop initiatives that leverage the latest trends and technology to improve more than one area of the organization; Management can apply the latest concepts to enable improvements across multiple areas.",
-    bandName: "Independent"),
+        description:
+            "Management is able to, with relative independence, develop initiatives that leverage the latest trends and technology to improve more than one area of the organization; Management can apply the latest concepts to enable improvements across multiple areas.",
+        bandName: "Independent"),
     BandModel(
         bandIndex: 5,
-        description:"Management is able to independently adapt its organizational transformation framework to changing trends and technologies; Management is able to augment its improvement initiatives with the latest concepts and requirements.",
-  bandName: "Adaptive"),
+        description:
+            "Management is able to independently adapt its organizational transformation framework to changing trends and technologies; Management is able to augment its improvement initiatives with the latest concepts and requirements.",
+        bandName: "Adaptive"),
   ], questions: [
     'What is the level of management knowledge in terms of Industry 4.0 technology and trends (e.g. Big data , Cloud Computing, Machine learning (ML), etc.)?',
     'Explain the difference between Industry 3.0 and Industry 4.0.',
@@ -600,26 +610,34 @@ List<DimensionInputModel> dimensionInputModel = [
   DimensionInputModel(bands: [
     BandModel(
         bandIndex: 0,
-        description:"Transformation towards a Factory/Plant-of-the-Future is not present in any part of the organization’s strategy; Intentions to establish a Factory/Plant-of-the-Future are not identified as a strategic focus in the company’s current or future plans.",
+        description:
+            "Transformation towards a Factory/Plant-of-the-Future is not present in any part of the organization’s strategy; Intentions to establish a Factory/Plant-of-the-Future are not identified as a strategic focus in the company’s current or future plans.",
         bandName: "None"),
     BandModel(
         bandIndex: 1,
         description:
-                "Transformation towards a factory/plant-of-the-future has been formally identified as a business strategy at the corporate or business level; Intentions to establish a factory/plant-of-the-future has been identified as a strategic focus in the company’s current or future operations.",
+            "Transformation towards a factory/plant-of-the-future has been formally identified as a business strategy at the corporate or business level; Intentions to establish a factory/plant-of-the-future has been identified as a strategic focus in the company’s current or future operations.",
         bandName: "Computerized"),
     BandModel(
         bandIndex: 2,
-        description:"A transformation initiative towards a factory/plant-of-the-future is being/has been developed by a dedicated team; A long-term strategy and governance model that establishes a factory/plant-of-the-future is being/has been developed.",bandName: "Visible"),
+        description:
+            "A transformation initiative towards a factory/plant-of-the-future is being/has been developed by a dedicated team; A long-term strategy and governance model that establishes a factory/plant-of-the-future is being/has been developed.",
+        bandName: "Visible"),
     BandModel(
         bandIndex: 3,
-        description:"Transformation initiative towards a Factory/Plant-of-the-Futurehas been formally implemented in at least one functional area; The long-term strategy and governance model to establish a Factory/Plant-of the-Future has been put into action.",bandName: "Diagnostic"),
+        description:
+            "Transformation initiative towards a Factory/Plant-of-the-Futurehas been formally implemented in at least one functional area; The long-term strategy and governance model to establish a Factory/Plant-of the-Future has been put into action.",
+        bandName: "Diagnostic"),
     BandModel(
         bandIndex: 4,
-        description:"Transformation initiative towards a Factory/Plant-of-the-Future is expanded to include more than one functional area; A long-term strategy and governance model to establish a Factory/Plant-of-the-Future is scaled up to include secondary areas.", bandName: "Predictive"),
+        description:
+            "Transformation initiative towards a Factory/Plant-of-the-Future is expanded to include more than one functional area; A long-term strategy and governance model to establish a Factory/Plant-of-the-Future is scaled up to include secondary areas.",
+        bandName: "Predictive"),
     BandModel(
         bandIndex: 5,
-        description:"Transformation initiative towards a Factory/Plant-of- the-Future is refreshed and updated dynamically; The long-term strategy and governance model to establish a Factory/Plant-of-the-Future is constantly reviewed and dynamically refreshed to account for the latest advancements in technology, business philosophy and practices."
-  ,bandName: "Adaptive"),
+        description:
+            "Transformation initiative towards a Factory/Plant-of- the-Future is refreshed and updated dynamically; The long-term strategy and governance model to establish a Factory/Plant-of-the-Future is constantly reviewed and dynamically refreshed to account for the latest advancements in technology, business philosophy and practices.",
+        bandName: "Adaptive"),
   ], questions: [
     'Does the company have the intention to establish a factory/ Plant- ofthe-Future ? is it identified as part of the organization’s startegy ?',
     'Has the company developed or is developing a road map to establish a Factory/Plant-of-the Future? Please describe the roadmap and action plans developed.',
@@ -628,6 +646,4 @@ List<DimensionInputModel> dimensionInputModel = [
     'Once the pilot initiative has been implemented successfully, how does the company scale it to other areas ? ',
     'How is the long-term strategu and governance to establish a Factory/Plant-of-the Future being refreshed and updated based on the latest technology trends ?'
   ])
-  
- 
 ];

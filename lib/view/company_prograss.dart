@@ -1,31 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 import 'package:smart_factory_analyzer/core/app_const.dart';
 import 'package:smart_factory_analyzer/core/app_route.dart';
 import 'package:smart_factory_analyzer/view/dashboard.dart';
-import 'package:smart_factory_analyzer/view/dim10/band10.dart';
-import 'package:smart_factory_analyzer/view/dim11/band11.dart';
-import 'package:smart_factory_analyzer/view/dim14/band14.dart';
-import 'package:smart_factory_analyzer/view/dim15/band15.dart';
-import 'package:smart_factory_analyzer/view/dim16/band16.dart';
-import 'package:smart_factory_analyzer/view/dim2/band2.dart';
-import 'package:smart_factory_analyzer/view/dim3/band3.dart';
-import 'package:smart_factory_analyzer/view/dim4/band4.dart';
-import 'package:smart_factory_analyzer/view/dim5/band5.dart';
-import 'package:smart_factory_analyzer/view/dim6/band6.dart';
-import 'package:smart_factory_analyzer/view/dim7/band7.dart';
-import 'package:smart_factory_analyzer/view/dim9/band9.dart';
 
+import '../controller/create_company_controller.dart';
 import '../model/Indus.dart';
 import 'dim1/band1.dart';
-import 'dim12/band12.dart';
-import 'dim13/band13.dart';
-import 'dim8/band8.dart';
+import 'dim1/ques1.dart';
 
 class CompanyPrograss extends StatefulWidget {
-  const CompanyPrograss(
-      {super.key, required this.progress, required this.name});
-  final double progress;
-  final String name;
+  const CompanyPrograss({
+    super.key,
+  });
 
   @override
   State<StatefulWidget> createState() => CompanyPrograssState();
@@ -41,6 +29,8 @@ class CompanyPrograssState extends State<CompanyPrograss> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.height;
+    var providerCompany =
+        Provider.of<CreateCompanyController>(context, listen: false);
     return Scaffold(
         body: SafeArea(
       child: Container(
@@ -49,7 +39,10 @@ class CompanyPrograssState extends State<CompanyPrograss> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              bloc1(height: screenHeight, width: screenWidth),
+              bloc1(
+                  height: screenHeight,
+                  width: screenWidth,
+                  provider: providerCompany),
               const SizedBox(
                 height: 10,
               ),
@@ -59,181 +52,366 @@ class CompanyPrograssState extends State<CompanyPrograss> {
               ),
               bloc3(
                   onTap: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (_) {
-                      return Band1();
-                    }));
+                    if (!(providerCompany.companyAdvencement >= 6.25)) {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (_) {
+                        return const Question1Dim1(index: 0);
+                      }));
+                    } else {
+                      Fluttertoast.showToast(
+                          backgroundColor: Colors.red,
+                          msg: 'you just finish this one',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                    }
                   },
                   screenHeight: screenHeight,
                   screenWidth: screenWidth,
                   text: "Operations - Vertical Integration",
-                  value: 0),
+                  value:
+                      (providerCompany.companyAdvencement >= 6.25) ? 100 : 0),
               bloc3(
                   onTap: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (_) {
-                      return Band2();
-                    }));
+                    if (!(providerCompany.companyAdvencement >= 12.5)) {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (_) {
+                        return const Question1Dim1(index: 1);
+                      }));
+                    } else {
+                      Fluttertoast.showToast(
+                          backgroundColor: Colors.red,
+                          msg: 'you just finish this one',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                    }
                   },
                   screenHeight: screenHeight,
                   screenWidth: screenWidth,
                   text: "Supply chain - Horizontal",
-                  value: 0),
+                  value:
+                      (providerCompany.companyAdvencement >= 12.5) ? 100 : 0),
               bloc3(
                   onTap: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (_) {
-                      return Band3();
-                    }));
+                    if (!(providerCompany.companyAdvencement >= 18.75)) {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (_) {
+                        return const Question1Dim1(index: 2);
+                      }));
+                    } else {
+                      Fluttertoast.showToast(
+                          backgroundColor: Colors.red,
+                          msg: 'you just finish this one',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                    }
                   },
                   screenHeight: screenHeight,
                   screenWidth: screenWidth,
                   text: "Product Lifecycle-\nIntegrated Product Lifecycle",
-                  value: 0),
+                  value:
+                      (providerCompany.companyAdvencement >= 18.75) ? 100 : 0),
               bloc3(
                   onTap: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (_) {
-                      return Band4();
-                    }));
+                    if (!(providerCompany.companyAdvencement >= 25)) {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (_) {
+                        return const Question1Dim1(index: 3);
+                      }));
+                    }
+                    {
+                      Fluttertoast.showToast(
+                          backgroundColor: Colors.red,
+                          msg: 'you just finish this one',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                    }
                   },
                   screenHeight: screenHeight,
                   screenWidth: screenWidth,
                   text: "Automation - Shop floor Automation",
-                  value: 0),
+                  value: (providerCompany.companyAdvencement >= 25) ? 100 : 0),
               bloc3(
                   onTap: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (_) {
-                      return Band5();
-                    }));
+                    if (!(providerCompany.companyAdvencement >= (6.25 * 5))) {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (_) {
+                        return const Question1Dim1(index: 4);
+                      }));
+                    } else {
+                      Fluttertoast.showToast(
+                          backgroundColor: Colors.red,
+                          msg: 'you just finish this one',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                    }
                   },
                   screenHeight: screenHeight,
                   screenWidth: screenWidth,
                   text: "Automation - Entreprise Automation",
-                  value: 0),
+                  value: (providerCompany.companyAdvencement >= (6.25 * 5))
+                      ? 100
+                      : 0),
               bloc3(
                   onTap: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (_) {
-                      return Band6();
-                    }));
+                    if (!(providerCompany.companyAdvencement >= (6.25 * 6))) {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (_) {
+                        return const Question1Dim1(index: 5);
+                      }));
+                    }else {
+                      Fluttertoast.showToast(
+                          backgroundColor: Colors.red,
+                          msg: 'you just finish this one',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                    }
                   },
                   screenHeight: screenHeight,
                   screenWidth: screenWidth,
                   text: "Automation - Facility",
-                  value: 0),
+                  value: (providerCompany.companyAdvencement >= (6.25 * 6))
+                      ? 100
+                      : 0),
               bloc3(
                   onTap: () {
+                    if (!(providerCompany.companyAdvencement >= (6.25 * 7))) {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (_) {
-                      return Band7();
-                    }));
+                      return const Question1Dim1(index: 6);
+                    }));}else {
+                      Fluttertoast.showToast(
+                          backgroundColor: Colors.red,
+                          msg: 'you just finish this one',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                    }
                   },
                   screenHeight: screenHeight,
                   screenWidth: screenWidth,
                   text: "Connectivity - Shop floor\nConnectivity",
-                  value: 0),
+                  value: (providerCompany.companyAdvencement >= (6.25 * 7))
+                      ? 100
+                      : 0),
               bloc3(
                   onTap: () {
+                    if (!(providerCompany.companyAdvencement >= (6.25 * 8))) {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (_) {
-                      return Band8();
-                    }));
+                      return const Question1Dim1(index: 7);
+                    }));}else {
+                      Fluttertoast.showToast(
+                          backgroundColor: Colors.red,
+                          msg: 'you just finish this one',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                    }
                   },
                   screenHeight: screenHeight,
                   screenWidth: screenWidth,
                   text: "Connectivity - Entreprise\nConnectivity",
-                  value: 0),
+                  value: (providerCompany.companyAdvencement >= (6.25 * 8))
+                      ? 100
+                      : 0),
               bloc3(
                   onTap: () {
+                    if (!(providerCompany.companyAdvencement >= (6.25 * 9))) {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (_) {
-                      return Band9();
-                    }));
+                      return const Question1Dim1(index: 8);
+                    }));}else {
+                      Fluttertoast.showToast(
+                          backgroundColor: Colors.red,
+                          msg: 'you just finish this one',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                    }
                   },
                   screenHeight: screenHeight,
                   screenWidth: screenWidth,
                   text: "Connectivity - Facility Connectivity",
-                  value: 0),
+                  value: (providerCompany.companyAdvencement >= (6.25 * 9))
+                      ? 100
+                      : 0),
               bloc3(
                   onTap: () {
+                    if (!(providerCompany.companyAdvencement >= (6.25 * 10))) {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (_) {
-                      return Band10();
-                    }));
+                      return const Question1Dim1(index: 9);
+                    }));}else {
+                      Fluttertoast.showToast(
+                          backgroundColor: Colors.red,
+                          msg: 'you just finish this one',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                    }
                   },
                   screenHeight: screenHeight,
                   screenWidth: screenWidth,
                   text: "Intelligence - Shop floor Intelligence",
-                  value: 0),
+                  value: (providerCompany.companyAdvencement >= (6.25 * 10))
+                      ? 100
+                      : 0),
               bloc3(
                   onTap: () {
+                   if (!(providerCompany.companyAdvencement >= (6.25 * 11))) {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (_) {
-                      return Band11();
-                    }));
+                      return const Question1Dim1(index: 10);
+                    }));}else {
+                      Fluttertoast.showToast(
+                          backgroundColor: Colors.red,
+                          msg: 'you just finish this one',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                    }
                   },
                   screenHeight: screenHeight,
                   screenWidth: screenWidth,
                   text: "Intelligence - Entreprise Intelligence",
-                  value: 0),
+                  value: (providerCompany.companyAdvencement >= (6.25 * 11))
+                      ? 100
+                      : 0),
               bloc3(
                   onTap: () {
+                    if (!(providerCompany.companyAdvencement >= (6.25 * 12))) {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (_) {
-                      return Band12();
-                    }));
+                      return const Question1Dim1(index: 11);
+                    }));}else {
+                      Fluttertoast.showToast(
+                          backgroundColor: Colors.red,
+                          msg: 'you just finish this one',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                    }
                   },
                   screenHeight: screenHeight,
                   screenWidth: screenWidth,
                   text: "Intelligence - Facility Intelligence",
-                  value: 0),
+                  value: (providerCompany.companyAdvencement >= (6.25 * 12))
+                      ? 100
+                      : 0),
               bloc3(
                   onTap: () {
+                    if (!(providerCompany.companyAdvencement >= (6.25 * 13))) {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (_) {
-                      return Band13();
-                    }));
+                      return const Question1Dim1(index: 12);
+                    }));}else {
+                      Fluttertoast.showToast(
+                          backgroundColor: Colors.red,
+                          msg: 'you just finish this one',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                    }
                   },
                   screenHeight: screenHeight,
                   screenWidth: screenWidth,
                   text: "Talent Readiness-\nWorkforce Learning & Development",
-                  value: 0),
+                  value: (providerCompany.companyAdvencement >= (6.25 * 13))
+                      ? 100
+                      : 0),
               bloc3(
                   onTap: () {
+                    if (!(providerCompany.companyAdvencement >= (6.25 * 14))) {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (_) {
-                      return Band14();
-                    }));
+                      return const Question1Dim1(index: 13);
+                    }));}else {
+                      Fluttertoast.showToast(
+                          backgroundColor: Colors.red,
+                          msg: 'you just finish this one',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                    }
                   },
                   screenHeight: screenHeight,
                   screenWidth: screenWidth,
                   text: "Talent Readiness-\nLeadership Competency",
-                  value: 0),
+                  value: (providerCompany.companyAdvencement >= (6.25 * 14))
+                      ? 100
+                      : 0),
               bloc3(
                   onTap: () {
+                   if (!(providerCompany.companyAdvencement >= (6.25 * 15))) {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (_) {
-                      return Band15();
-                    }));
+                      return const Question1Dim1(index: 14);
+                    }));}else {
+                      Fluttertoast.showToast(
+                          backgroundColor: Colors.red,
+                          msg: 'you just finish this one',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                    }
                   },
                   screenHeight: screenHeight,
                   screenWidth: screenWidth,
                   text:
                       "Structure & Management-Inter-and\nIntra - Company Collaboration",
-                  value: 0),
+                  value: (providerCompany.companyAdvencement >= (6.25 * 15))
+                      ? 100
+                      : 0),
               bloc3(
                   onTap: () {
+                    
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (_) {
-                      return Band16();
+                      return const Question1Dim1(index: 15);
                     }));
                   },
                   screenHeight: screenHeight,
                   screenWidth: screenWidth,
                   text: "Stategy and Governance",
-                  value: 0),
+                  value: (providerCompany.companyAdvencement >= (6.25 * 16))
+                      ? 100
+                      : 0),
             ],
           ),
         ),
@@ -272,7 +450,7 @@ class CompanyPrograssState extends State<CompanyPrograss> {
                     text,
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  Icon(
+                  const Icon(
                     Icons.notifications,
                     color: Colors.black,
                   )
@@ -333,7 +511,10 @@ class CompanyPrograssState extends State<CompanyPrograss> {
     );
   }
 
-  Container bloc1({required double height, required double width}) {
+  Container bloc1(
+      {required double height,
+      required double width,
+      required CreateCompanyController provider}) {
     return Container(
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -366,7 +547,7 @@ class CompanyPrograssState extends State<CompanyPrograss> {
                 flex: 1,
               ),
               Text(
-                widget.name,
+                provider.companyName,
                 style: const TextStyle(color: Colors.white, fontSize: 20),
               ),
               const Spacer(
@@ -376,7 +557,7 @@ class CompanyPrograssState extends State<CompanyPrograss> {
           ),
           Center(
               child: Text(
-            "${widget.progress * 100}%",
+            "${provider.companyAdvencement}%",
             style: TextStyle(
                 fontSize: height * 0.08,
                 color: Colors.white,
